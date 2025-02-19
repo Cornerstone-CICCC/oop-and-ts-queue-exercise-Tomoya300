@@ -10,7 +10,13 @@ function processApplicants(queue) {
   const size = queue.size()
   for (let i = 0; i < size; i++) {
     const applicant = queue.dequeue()
-    if (applicant.yearsExperience >= 2 && applicant.techStack.includes('React')) {
+    let hasReact = false
+    for (let j = 0; j < applicant.techStack.length; j++) {
+      if (applicant.techStack[j] === 'React') {
+        hasReact = true
+      }
+    }
+    if (applicant.yearsExperience >= 2 && hasReact) {
       queue.enqueue(applicant)
     }
   }
