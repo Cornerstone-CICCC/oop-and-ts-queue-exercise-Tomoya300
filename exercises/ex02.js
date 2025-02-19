@@ -6,7 +6,17 @@
 const Queue = require('../lib/Queue')
 
 function groceryCheckout(queue) {
-  // your code here
+  const size = queue.size()
+  for (let i = 0; i < size; i++) {
+    const customer = queue.dequeue()
+    let total = 0
+    for (let j = 0; j < customer.cart.length; j++) {
+      total += customer.cart[j].price
+    }
+    if (total > 50) {
+      queue.enqueue(customer)
+    }
+  }
 }
 
 const customers = new Queue();

@@ -7,7 +7,17 @@
 const Queue = require('../lib/Queue')
 
 function processReturns(queue) {
-  // your code here
+  const size = queue.size()
+  for (let i = 0; i < size; i++) {
+    const customer = queue.dequeue()
+    let late = 0
+    for (let j = 0; j < customer.books.length; j++) {
+      late += customer.books[j].daysLate
+    }
+    if (late !== 0) {
+      queue.enqueue(customer)
+    }
+  }
 }
 
 const returns = new Queue();
